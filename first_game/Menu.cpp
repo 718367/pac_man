@@ -1,6 +1,12 @@
-#include "Menu.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <map>
+#include <iterator>
+#include <fstream>
+#include <sstream>
+#include "Menu.h"
+#include "player.h"
+#include "maze.h"
 using namespace std;
 using namespace sf;
 

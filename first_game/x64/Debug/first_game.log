@@ -1,5 +1,2 @@
 ﻿  main.cpp
-  maze.cpp
-  Generating Code...
-C:\Users\Compu Tech\source\repos\pac-man\first_game\maze.h(503): warning C4715: 'maze::isEmptyPlace': not all control paths return a value
-  first_game.vcxproj -> C:\Users\Compu Tech\source\repos\pac-man\x64\Debug\first_game.exe
+  first_game.vcxproj -> C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\x64\Debug\first_game.exe
