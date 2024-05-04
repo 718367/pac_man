@@ -11,7 +11,7 @@ private:
 	Font font;
 public:
 	Text mainmenu[3];
-	Menu(float width, float height);
+	Menu(unsigned int width, unsigned int height);
 	void draw(RenderWindow& window);
 	void Move_up();
 	void Move_down();
