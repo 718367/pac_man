@@ -25,7 +25,6 @@ int pagenum = -1;
 	2   :: exit
 */
 
-void gamePlayPage(RenderWindow& window);
 int main() {
 	game game;
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
@@ -67,7 +66,7 @@ int main() {
 			if (pagenum != -1) {
 				break;
 			}
-			menu.draw(window);
+			menu.drawMenuText(window);
 			window.display();
 		}
 		if (pagenum == 2) {

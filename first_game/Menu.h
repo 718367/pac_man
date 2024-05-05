@@ -6,13 +6,12 @@ using namespace std;
 using namespace sf;
 class Menu
 {
-private:
+public:
 	int selected;
 	Font font;
-public:
-	Text mainmenu[3];
+	Text mainMenuText[3];
 	Menu(unsigned int width, unsigned int height);
-	void draw(RenderWindow& window);
+	void drawMenuText(RenderWindow& window);
 	void Move_up();
 	void Move_down();
 	void set_selected(int n);

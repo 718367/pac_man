@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -9,6 +8,7 @@
 #include "player.h"
 #include "maze.h"
 #include "game.h"
+#include"enemy.h"
 
 using namespace std;
 using namespace sf;
@@ -22,12 +22,17 @@ game::game()
 
 void game::gamePlayPage(RenderWindow& window)
 {
-	Texture tx;
-	tx.loadFromFile("spritesheet.png");
+	Texture playerTexture;
+	playerTexture.loadFromFile("spritesheet.png");
 	Player player;
-	player.sp(tx);
+	player.sp(playerTexture);
 	player.rect.left = 315;
 	player.rect.top = 650;
+
+	Texture enemyTexture;
+	enemyTexture.loadFromFile("ghost1.png");
+	enemy enemy;
+	enemy.enemySprite.setPosition(310, 315);
 
 	maze maze_map;
 	maze_map.loadMapTexture("map.png");
@@ -48,34 +53,45 @@ void game::gamePlayPage(RenderWindow& window)
 			if (event.type == Event::Closed)
 				window.close();
 		}
+		// display position in the console
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			Vector2i pos = Mouse::getPosition(window);
 			cout << pos.x << " " << pos.y << endl;
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			player.move_x = -2;
+			player.move_y = 0;
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 			player.move_x = 2;
+			player.move_y = 0;
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Key::W)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 			player.move_y = -2;
+			player.move_x = 0;
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 			player.move_y = 2;
+			player.move_x = 0;
 		}
 
+		// Update player
 		player.update();
 
+
+		// player collision with blockes
 		for (int i = 0; i < no_Collisions; i++) {
 			if (player.playerSprite.getGlobalBounds().intersects(blocks[i].getGlobalBounds())) {
 				maze_map.drawCollision2(blocks[i], player, blockMap[i]);
 			}
 		}
 
+		// drawing objects
 		window.clear();
 		window.draw(maze_map.background);
 		window.draw(player.playerSprite);
+		window.draw(enemy.enemySprite);
 		for (int i = 0; i < no_Coins; i++)
 		{
 			window.draw(points[i]);
@@ -89,5 +105,5 @@ void game::gamePlayPage(RenderWindow& window)
 		}
 		window.display();
 	}
-}
 
+}

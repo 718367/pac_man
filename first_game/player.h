@@ -1,4 +1,3 @@
-
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -12,6 +11,15 @@ using namespace sf;
 class Player {
 
 public:
+	int moveSpeed;
+	int a, s, d, w;
+	float move_x, move_y;
+	float frameTime = 0.1f; // Time (in seconds) between sprite frame changes
+	float elapsedFrameTime = 0.0f;
+	Clock clock;
+	Sprite playerSprite;
+	FloatRect rect;
+
 	// Constructor
 	Player();
 
@@ -21,10 +29,8 @@ public:
 	// Member function to update player state
 	void update();
 
-	sf::Sprite playerSprite;
-	int a, s, d, w, pressed;
-	sf::FloatRect rect;
-	float move_x, move_y;
+	void updateSpriteAnimation();
+
 };
 
 
