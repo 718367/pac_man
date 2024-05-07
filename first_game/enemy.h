@@ -23,10 +23,10 @@ public:
     // Method to draw enemy on screen
     void draw(sf::RenderWindow& window);
 
-private:
-    sf::Sprite nemySprite;
+
+    sf::Sprite enemySprite;
     sf::Vector2f position;
-    float speed;
+    float speed=1;
 };
 
 

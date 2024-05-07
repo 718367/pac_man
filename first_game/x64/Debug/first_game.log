@@ -1,14 +1,3 @@
-﻿  enemy.cpp
-  game.cpp
-  main.cpp
-  maze.cpp
-  Menu.cpp
-C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\first_game\Menu.cpp(19,52): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  player.cpp
-  Generating Code...
-C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\first_game\maze.cpp(484): warning C4715: 'maze::isEmptyPlace': not all control paths return a value
+﻿  maze.cpp
+C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\first_game\maze.cpp(214): warning C4715: 'maze::isEmptyPlace': not all control paths return a value
   first_game.vcxproj -> C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\x64\Debug\first_game.exe

@@ -19,5 +19,5 @@ enemy::enemy()
 }
 
 void enemy::draw(sf::RenderWindow& window) {
-    window.draw(nemySprite);
+    window.draw(enemySprite);
 }
