@@ -1,3 +1,2 @@
-﻿  maze.cpp
-C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\first_game\maze.cpp(214): warning C4715: 'maze::isEmptyPlace': not all control paths return a value
+﻿  game.cpp
   first_game.vcxproj -> C:\Users\Compu Tech\Documents\Opject Orianted Programming\first_game\x64\Debug\first_game.exe

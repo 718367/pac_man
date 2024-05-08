@@ -7,7 +7,6 @@
 extern float collisionThinkness;
 const int num_ofCollisions = 150;
 const int num_of_Coins = 676;
-
 class maze {
 public:
     sf::Texture texture;
@@ -21,12 +20,12 @@ public:
     maze() {}
 
     bool loadMapTexture(const std::string& filename);
-    void drawPoints(sf::Sprite points[], sf::Texture& point);
+    void drawPoints(vector<sf::Sprite>& points, sf::Texture& point);
 
     void drawCollision(sf::RectangleShape& block, float X, float Y, float X_position, float Y_position);
 
     void drawCollision2(sf::RectangleShape block, Player& player, char dr);
-    void mapCollision(sf::RectangleShape blocks[], std::map<int, char>& map);
+    void mapCollision(vector<sf::RectangleShape>& blocks, std::map<int, char>& map);
     bool isEmptyPlace(int xIndex, int yIndex);
     void draw(sf::RenderWindow& window);
 };

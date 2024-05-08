@@ -20,72 +20,56 @@ bool maze::loadMapTexture(const std::string& filename) {
 	return true;
 }
 
-void maze::drawPoints(sf::Sprite points[], sf::Texture& point) {
-	for (int i = 0, xIndex = 0, yIndex = 0, xpos, ypos; i < noCoins; i++, xIndex++)
-	{
-		if (i < 312) {
-			if (xIndex == 26) {
-				xIndex = 0;
-				yIndex++;
-			}
-			if (isEmptyPlace(xIndex, yIndex)) {
-				xpos = xIndex * 24 + 25;
-				ypos = yIndex * 23 + 25;
-				points[i].setTexture(point);
-				points[i].setPosition(float(xpos), float(ypos));
-			}
-		}
-		else if (i >= 312 && i < 442) {
-			if (xIndex == 26) {
-				xIndex = 0;
-				yIndex++;
-			}
-			if (isEmptyPlace(xIndex, yIndex)) {
-				xpos = xIndex * 24 + 25;
-				ypos = yIndex * 24 + 27;
-				points[i].setTexture(point);
-				points[i].setPosition(float(xpos), float(ypos));
-			}
-		}
-		else if (i >= 442 && i < 546) {
-			if (xIndex == 26) {
-				xIndex = 0;
-				yIndex++;
-			}
-			if (isEmptyPlace(xIndex, yIndex)) {
-				xpos = xIndex * 24 + 25;
-				ypos = yIndex * 23 + 60;
-				points[i].setTexture(point);
-				points[i].setPosition(float(xpos), float(ypos));
-			}
-		}
-		else if (i >= 546 && i < 572) {
-			if (xIndex == 26) {
-				xIndex = 0;
-				yIndex++;
-			}
-			if (isEmptyPlace(xIndex, yIndex)) {
-				xpos = xIndex * 24 + 25;
-				ypos = yIndex * 23 + 70;
-				points[i].setTexture(point);
-				points[i].setPosition(float(xpos), float(ypos));
-			}
-		}
-		else {
-			if (xIndex == 26) {
-				xIndex = 0;
-				yIndex++;
-			}
-			if (isEmptyPlace(xIndex, yIndex)) {
-				xpos = xIndex * 24 + 25;
-				ypos = yIndex * 23 + 78;
-				points[i].setTexture(point);
-				points[i].setPosition(float(xpos), float(ypos));
-			}
+void maze::drawPoints(vector<sf::Sprite>& points, sf::Texture& point) {
+	const int rowWidth = 26; // Width of each row in the maze
+	const int section1End = 312;
+	const int section2End = 442;
+	const int section3End = 546;
+	const int section4End = 572;
+
+	int xIndex = 0;
+	int yIndex = 0;
+	int pointIndex = 0;
+
+	// Loop through each point
+	for (int i = 0; i < noCoins; i++) {
+		// Check if xIndex exceeds row width
+		if (xIndex == rowWidth) {
+			xIndex = 0;
+			yIndex++;
 		}
 
+		// Check if point should be drawn based on maze layout
+		if (isEmptyPlace(xIndex, yIndex)) {
+			// Calculate position of the point
+			int xpos = xIndex * 24 + 25;
+			int ypos = 0;
+
+			// Determine ypos based on pointIndex range
+			if (i < section1End)
+				ypos = yIndex * 23 + 25;
+			else if (i >= section1End && i < section2End)
+				ypos = yIndex * 24 + 27;
+			else if (i >= section2End && i < section3End)
+				ypos = yIndex * 23 + 60;
+			else if (i >= section3End && i < section4End)
+				ypos = yIndex * 23 + 70;
+			else
+				ypos = yIndex * 23 + 78;
+
+			// Set texture and position of the point
+			points[i].setTexture(point);
+			points[i].setPosition(float(xpos), float(ypos));
+
+			// Increment pointIndex
+			pointIndex++;
+		}
+
+		// Increment xIndex
+		xIndex++;
 	}
 }
+
 
 void maze::drawCollision(sf::RectangleShape& block, float X, float Y, float X_position, float Y_position) {
 	block.setSize(Vector2f(X, Y));
@@ -109,7 +93,7 @@ void maze::drawCollision2(sf::RectangleShape block, Player& player, char dr)
 	}
 }
 
-void maze::mapCollision(sf::RectangleShape blocks[], std::map<int, char>& map) {
+void maze::mapCollision(vector<sf::RectangleShape>& blocks, std::map<int, char>& map) {
 
 	std::ifstream fileIn("mapCollisions.txt");
 
@@ -219,3 +203,6 @@ void maze::draw(sf::RenderWindow& window) {
 		window.draw(blocks[i]);
 	}
 }
+
+
+

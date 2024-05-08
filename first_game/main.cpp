@@ -4,6 +4,9 @@
 #include <iterator>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <vector>
+#include "MainMenu.h"
 #include "Menu.h"
 #include "player.h"
 #include "maze.h"
@@ -15,68 +18,56 @@ using namespace sf;
 
 const int noCollisions = 150;
 const int noCoins = 676;
-int pagenum = -1;
 
-/*
-	< page route >
-	-1  :: menu page
-	0   :: gameplay page
-	1   :: instrections page
-	2   :: exit
-*/
 
 int main() {
 	game game;
 	sf::VideoMode desktopMode = sf::VideoMode::getDesktopMode();
-	sf::RenderWindow window(desktopMode, "SFML works!");
-	Menu menu(desktopMode.width, desktopMode.height);
+	sf::RenderWindow window(sf::VideoMode(desktopMode.width - 250, desktopMode.height - 70), "SFML works!");
 	window.setFramerateLimit(60);
-
-	while (true) {
-		while (window.isOpen())
+	MainMenu MainMenu(static_cast<float>(desktopMode.width), static_cast<float>(desktopMode.height));
+	int current_phase = 1; // variable to determine the cuurent page the user is on //
+	while (window.isOpen())
+	{
+		if (current_phase == 1)
 		{
-			Event event;
-			while (window.pollEvent(event))
-			{
-				if (event.type == Event::Closed) {
-					window.close();
-					break;
-				}
-				if (event.type == Event::KeyPressed) {
-					if (event.key.code == Keyboard::Up) {
-						menu.Move_up();
-					}
-					if (event.key.code == Keyboard::Down) {
-						menu.Move_down();
-					}
-					if (event.key.code == Keyboard::Return) {
-						if (menu.pressed() == 0) {
-							pagenum = 0;
-						}
-						if (menu.pressed() == 1) {
-							pagenum = 1;
-						}
-						if (menu.pressed() == 2) {
-							pagenum = 2;
-						}
-					}
-				}
-			}
-			window.clear();
-			if (pagenum != -1) {
-				break;
-			}
-			menu.drawMenuText(window);
-			window.display();
+			current_phase = MainMenu.gamemainmenu(window);
 		}
-		if (pagenum == 2) {
+		if (current_phase == 2)
+		{
+			current_phase = MainMenu.playername(window, MainMenu.pname);
+		}
+		if (current_phase == 3)
+		{
+
+		}
+		if (current_phase == 4)
+		{
+
+		}
+		if (current_phase == 5)
+		{
+			current_phase = MainMenu.levelselection(window);
+		}
+		if (current_phase == 6)
+		{
+			
+			current_phase = game.level1(window);
+		}
+		/*if (current_phase == 7)
+		{
+			current_phase = level2;
+		}
+		if (current_phase == 8)
+		{
+			current_phase = level3;
+		}*/
+		if (current_phase == -1)
+		{
 			window.close();
-		}
-		if (pagenum == 0) {
-			game.gamePlayPage(window);
+			break;
 		}
 	}
-
 	return 0;
 }
 

@@ -6,7 +6,6 @@
 #include <iterator>
 using namespace std;
 using namespace sf;
-
 // Class Definition
 class Player {
 
@@ -29,7 +28,7 @@ public:
 	// Member function to update player state
 	void update();
 
-	void updateSpriteAnimation();
+	void updateAnimation();
 
 };
 

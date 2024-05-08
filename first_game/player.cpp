@@ -7,7 +7,6 @@
 #include "Menu.h"
 #include "player.h"
 #include "maze.h"
-
 // Constructor
 Player::Player() : a(1), s(7), d(5), w(3), moveSpeed(2), move_x(0), move_y(0) {
 	playerSprite.setTextureRect(sf::IntRect(0, 0, 26, 26));
@@ -41,7 +40,7 @@ void Player::update() {
 	if (elapsedFrameTime >= frameTime) {
 
 		// Update sprite animation
-		updateSpriteAnimation();
+		updateAnimation();
 
 		elapsedFrameTime = 0.0f;
 	}
@@ -49,8 +48,9 @@ void Player::update() {
 	playerSprite.setPosition(rect.left, rect.top);
 }
 
-// Helper function to update sprite animation based on movement
-void Player::updateSpriteAnimation()
+
+
+void Player::updateAnimation()
 {
 	// move right
 	if (move_x > 0) {
@@ -85,6 +85,7 @@ void Player::updateSpriteAnimation()
 		playerSprite.setTextureRect(sf::IntRect(w * 26, 0, 26, 26));
 	}
 }
+
 
 
 

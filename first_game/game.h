@@ -1,4 +1,9 @@
+#ifndef GAME_H
+#define GAME_H
+
 #pragma once
+#include <iostream>
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <map>
@@ -8,10 +13,31 @@
 #include "Menu.h"
 #include "player.h"
 #include "maze.h"
-class game
-{
+
+class game {
 public:
     game();
-    void gamePlayPage(RenderWindow& window);
+
+    int level1(sf::RenderWindow& window);
+
+private:
+    Texture playerTexture;
+    Player player;
+    Texture sPo, bPo;
+    maze maze;
+    std::vector<sf::Sprite> points;
+    std::vector<sf::RectangleShape> blocks;
+
+    std::map<int, char> blockMap;
+
+    void playerMovement();
+    void playerCollisions();
+    void drawObjects(sf::RenderWindow& window);
+    const int no_Collisions = 150;
+    const int no_Coins = 676;
 };
 
+#endif // GAME_H
+
+/*Sprite points[no_Coins];
+RectangleShape blocks[no_Collisions];*/
