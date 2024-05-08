@@ -4,7 +4,6 @@
 #include <iterator>
 #include <fstream>
 #include <sstream>
-#include "Menu.h"
 #include "player.h"
 #include "maze.h"
 float collisionThinkness = 2.0f;
@@ -84,12 +83,16 @@ void maze::drawCollision2(sf::RectangleShape block, Player& player, char dr)
 
 		else if (dr == 'l')
 			player.rect.left = block.getPosition().x + 5;
+		player.move_x = 0;
+		player.playerSprite.setTextureRect(sf::IntRect(0, 0, 26, 26));
 	}
 	else if (block.getSize().y == collisionThinkness) {
 		if (dr == 'r')
 			player.rect.top = block.getPosition().y - 39;
 		else if (dr == 'l')
 			player.rect.top = block.getPosition().y + 5;
+		player.move_y = 0;
+		player.playerSprite.setTextureRect(sf::IntRect(0, 0, 26, 26));
 	}
 }
 

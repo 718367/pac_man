@@ -7,7 +7,6 @@
 #include <string>
 #include <vector>
 #include "MainMenu.h"
-#include "Menu.h"
 #include "player.h"
 #include "maze.h"
 #include "game.h"
@@ -52,7 +51,7 @@ int main() {
 		if (current_phase == 6)
 		{
 			
-			current_phase = game.level1(window);
+			current_phase = game.level1(window,MainMenu.score);
 		}
 		/*if (current_phase == 7)
 		{

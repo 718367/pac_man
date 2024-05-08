@@ -16,9 +16,9 @@ public :
 	Text menuchoice[4];
 	Texture Mainmenupic;
 	Sprite background;
+	int score;
 
-
-	MainMenu(float width, float height);  //constructor//
+	MainMenu(int width, int height);  //constructor//
 
 	void draw(RenderWindow& window);
 	void moveup(int textnumber, Text arr[]);

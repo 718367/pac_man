@@ -7,10 +7,8 @@ using namespace std;
 using namespace sf;
 
 //seting the constructor and the details of every member in the mainmenu class//
-MainMenu::MainMenu(float width, float height) 
-{
-	this->width = width;
-	this->height = height;
+MainMenu::MainMenu(int width, int height) :score(0), width(width), height(height), selectedlevel(0)
+{   
 
 	Mainmenupic.loadFromFile("hopefully.jpg");
 	background.setTexture(Mainmenupic);
@@ -280,15 +278,15 @@ int MainMenu::gamemainmenu(RenderWindow& window)
 				{
 					if (event.key.code == Keyboard::Up)
 					{
-						moveup(4,menuchoice);
+						moveup(4, menuchoice);
 					}
 					if (event.key.code == Keyboard::Down)
 					{
-						movedown(4,menuchoice);
+						movedown(4, menuchoice);
 					}
-					if (event.key.code == Keyboard:: Return)
+					if (event.key.code == Keyboard::Return)
 					{
-						if (pressed() == 0) 
+						if (pressed() == 0)
 						{
 							return 2;
 						}
@@ -302,7 +300,7 @@ int MainMenu::gamemainmenu(RenderWindow& window)
 						}
 						if (pressed() == 3)
 						{
-							return -1 ;
+							return -1;
 						}
 					}
 				}

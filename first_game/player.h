@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "Menu.h"
 #include <map>
 #include <iterator>
 using namespace std;

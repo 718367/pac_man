@@ -4,7 +4,6 @@
 #include <iterator>
 #include <fstream>
 #include <sstream>
-#include "Menu.h"
 #include "player.h"
 #include "maze.h"
 // Constructor
